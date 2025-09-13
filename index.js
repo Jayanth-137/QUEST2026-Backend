@@ -1,10 +1,13 @@
-const express = require('express');
-const app = express();
+const app = require('./app');
+const connectDB = require('./config/db');
+const dotenv = require('dotenv');
 
-app.get('/', (req, res) => {
-  res.send('This is the backend server for QUEST 2026');
-});
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Backend listening at http://localhost:${port}`);
+dotenv.config();
+connectDB();
+
+const PORT = process.env.PORT || 5000;
+const server = http.createServer(app);
+
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
